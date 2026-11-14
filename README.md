@@ -5,7 +5,7 @@
   * In versions such as TinyUSB 0.18.0, the microphone device may fail to initialize properly.
   * Please apply the following command to fix the bug in TinyUSB : `git cherry-pick 334ac80 -m 1`
   * [The sample code forked originally](https://github.com/delingren/mems_mic/tree/stereo_no_encoding) obtained the data line from two separate I/O pins(GPIO3&4).
-  * This repo is modified it to align with the specifications of typical PDM microphones by consolidating the data line using the SEL pin.
+  * This repo is modified it to align with the specifications of typical PDM microphones by consolidating the data line(Only GPIO3) using the SEL pin.
 
 ## Sampling Rate vs PDM Clock
 | PCM Sampling Rate | PDM Clock  |
@@ -35,7 +35,7 @@
 | GPIO 3 | DAT | DAT |
 | GPIO 5 | CLK | CLK |
 
-GPIO pins are configurable in examples or API.
+
 
 #### One PDM Microphone
 
@@ -47,6 +47,7 @@ GPIO pins are configurable in examples or API.
 | GPIO 3 | DAT | 
 | GPIO 5 | CLK | 
 
+GPIO pins are configurable in examples or API.  
 For monaural operation, connect SEL to either VCC or GND.  
 Do not leave the SEL pin floating. 
 
