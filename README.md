@@ -4,7 +4,7 @@
   * If you change the sampling rate, be sure to uninstall the driver; otherwise, the device will not function correctly.  
   * In versions such as TinyUSB 0.18.0, the microphone device may fail to initialize properly.
   * Please apply the following command to fix the bug in TinyUSB : `git cherry-pick 334ac80 -m 1`
-  * The sample code forked originally obtained the data line from two separate I/O pins.
+  * [The sample code forked originally](https://github.com/delingren/mems_mic/tree/stereo_no_encoding) obtained the data line from two separate I/O pins(GPIO3&4).
   * This repo is modified it to align with the specifications of typical PDM microphones by consolidating the data line using the SEL pin.
 
 ## Sampling Rate vs PDM Clock
