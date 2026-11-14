@@ -7,6 +7,14 @@
   * The sample code forked originally obtained the data line from two separate I/O pins.
   * This repo is modified it to align with the specifications of typical PDM microphones by consolidating the data line using the SEL pin.
 
+## Sampling Rate vs PDM Clock
+| PCM Sampling Rate | PDM Clock  |
+| -------------------------- | ----------------- |
+| 16kHz	| 1.024MHz |
+| 24kHz	| 1.536MHz |
+| 32kHz	| 2.048MHz |
+| 48kHz	| 3.072MHz |
+
 ## Hardware
 
  * RP2040 board or RP2350 board 
