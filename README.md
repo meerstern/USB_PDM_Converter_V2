@@ -24,8 +24,8 @@
 | 3.3V | VCC |VCC |
 | GND | GND | GND |
 | - | SEL->GND | SEL->VCC |
-| GPIO 2 | DAT | DAT |
-| GPIO 3 | CLK | CLK |
+| GPIO 3 | DAT | DAT |
+| GPIO 5 | CLK | CLK |
 
 GPIO pins are configurable in examples or API.
 
@@ -36,8 +36,8 @@ GPIO pins are configurable in examples or API.
 | 3.3V | VCC |
 | GND | GND | 
 | - | SEL->GND or VCC |
-| GPIO 2 | DAT | 
-| GPIO 3 | CLK | 
+| GPIO 3 | DAT | 
+| GPIO 5 | CLK | 
 
 For monaural operation, connect SEL to either VCC or GND.  
 Do not leave the SEL pin floating. 
