@@ -51,7 +51,7 @@ tusb_desc_device_t const desc_device =
     .bDeviceProtocol    = MISC_PROTOCOL_IAD,
     .bMaxPacketSize0    = CFG_TUD_ENDPOINT0_SIZE,
 
-    .idVendor           = 0x0226,
+    .idVendor           = 0xCafe,
     .idProduct          = USB_PID,
     .bcdDevice          = 0x0100,
 
@@ -114,8 +114,8 @@ uint8_t const * tud_descriptor_configuration_cb(uint8_t index)
 // array of pointer to string descriptors
 char const* string_desc_arr [] = {
     (const char[]) { 0x09, 0x04 }, // 0: is supported language is English (0x0409)
-    "Deling Ren",                  // 1: Manufacturer
-    "HP Stereo Mic",                // 2: Product
+    "None",                  // 1: Manufacturer
+    "Stereo Mic",                // 2: Product
     NULL,                          // 3: Serials will use unique ID if possible
     "UAC2",                        // 4: Audio Interface
 };

@@ -9,8 +9,8 @@
 #define _USB_MICROPHONE_H_
 
 #include "tusb.h"
+#include "tusb_config.h"
 
-#define SAMPLES_PER_MS 16
 #define SAMPLE_RATE (SAMPLES_PER_MS * 1000)
 
 typedef void (*usb_microphone_tx_ready_handler_t)(void);
