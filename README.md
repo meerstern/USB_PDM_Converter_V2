@@ -17,7 +17,7 @@
 
 ### Default Pinout
 
-#### PDM Microphone
+#### Two PDM Microphone
 
 | Raspberry Pi Pico / RP2040 | PDM Microphone Left | PDM Microphone Right |
 | -------------------------- | ----------------- |----------------- |
@@ -28,6 +28,19 @@
 | GPIO 3 | CLK | CLK |
 
 GPIO pins are configurable in examples or API.
+
+#### One PDM Microphone
+
+| Raspberry Pi Pico / RP2040 | PDM Microphone  |
+| -------------------------- | ----------------- |
+| 3.3V | VCC |
+| GND | GND | 
+| - | SEL->GND or VCC |
+| GPIO 2 | DAT | 
+| GPIO 3 | CLK | 
+
+For monaural operation, connect SEL to either VCC or GND.  
+Do not leave the SEL pin floating. 
 
 ## Examples
 
