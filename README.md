@@ -1,48 +1,31 @@
-# Microphone Library for Pico
-
-I forked this library to interface a stereo microphone with my computer. The said microphone is two mics on one PCB. Each has its own clock and data wires. I modified `usb_microphone` example to sample both mics and mux the signals into one USB stream. If anyone comes upon this repo, note that I have no intention or interest to make this a library. It works for this particular application. The code is super hacky and ugly. See the [original post](https://www.hackster.io/sandeep-mistry/create-a-usb-microphone-with-the-raspberry-pi-pico-cc9bd5) for more information about PDM microphones. I also referenced the `audio_4_channel_mic` example from [tinyusb lib](https://github.com/hathach/tinyusb/tree/master/examples/device/audio_4_channel_mic/src).
-
-Highlights of my changes:
-* Define a USB descriptor for a 2-channel mic.
-* Modify PIO instructions to read 2 data pins (they need to be consecutive). Each pin for one channel.
-* Modify PDM filter code to separate signals from the raw samples collected from the previous step. Bits representing the left and right channels are alternating. I did some bitwise gymnastics to separate them with very few operations.
-* Modify PDM filter code to filter both signals. The filter code is stateful. You need to basically create two filters for two channels. You can't call the filter function on two signals.
-* Removed some PDM filter code that doesn't apply to my application. So that I don't need to maintain its correctness.
-
-Original README follows
-
-Capture audio from a microphone on your [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/) or any [RP2040](https://www.raspberrypi.org/products/rp2040/) based board. 🎤
-
+# USB-PDM Converter V2  
+  * Converts a digital MEMS microphone into a USB audio device.  
+  * The sampling rate is defined by `SAMPLES_PER_MS` in `tusb_config.h`.  
+  * If you change the sampling rate, be sure to uninstall the driver; otherwise, the device will not function correctly.  
+  * In versions such as TinyUSB 0.18.0, the microphone device may fail to initialize properly.
+  * Please apply the following command to fix the bug in TinyUSB : `git cherry-pick 334ac80 -m 1`
+  * The sample code forked originally obtained the data line from two separate I/O pins.
+  * This repo is modified it to align with the specifications of typical PDM microphones by consolidating the data line using the SEL pin.
 
 ## Hardware
 
- * RP2040 board
+ * RP2040 board or RP2350 board 
    * [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/)
  * Microphones
-   * Analog
-     * [Electret Microphone Amplifier - MAX9814 with Auto Gain Control](https://www.adafruit.com/product/1713) 
    * PDM
-     * [Adafruit PDM MEMS Microphone Breakout](https://www.adafruit.com/product/3492)
+     * [Syntiant Digital MEMS Microphone SPH0641LU4H-1](https://github.com/meerstern/SPH0641LU)
 
 ### Default Pinout
 
-#### Analog Microphone
-
-| Raspberry Pi Pico / RP2040 | Analog Microphone |
-| -------------------------- | ----------------- |
-| 3.3V | VCC |
-| GND | GND |
-| GPIO 26 | OUT |
-
 #### PDM Microphone
 
-| Raspberry Pi Pico / RP2040 | PDM Microphone |
-| -------------------------- | ----------------- |
-| 3.3V | VCC |
-| GND | GND |
-| GND | SEL |
-| GPIO 2 | DAT |
-| GPIO 3 | CLK |
+| Raspberry Pi Pico / RP2040 | PDM Microphone Left | PDM Microphone Right |
+| -------------------------- | ----------------- |----------------- |
+| 3.3V | VCC |VCC |
+| GND | GND | GND |
+| - | SEL->GND | SEL->VCC |
+| GPIO 2 | DAT | DAT |
+| GPIO 3 | CLK | CLK |
 
 GPIO pins are configurable in examples or API.
 
@@ -50,12 +33,6 @@ GPIO pins are configurable in examples or API.
 
 See [examples](examples/) folder.
 
-
-## Cloning
-
-```sh
-git clone https://github.com/ArmDeveloperEcosystem/microphone-library-for-pico.git 
-```
 
 ## Building
 
