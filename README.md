@@ -32,7 +32,7 @@
 | -------------------------- | ----------------- |----------------- |
 | 3.3V | VCC |VCC |
 | GND | GND | GND |
-| - | SEL->GND | SEL->VCC |
+| - | SEL->VCC | SEL->GND |
 | GPIO 3 | DAT | DAT |
 | GPIO 5 | CLK | CLK |
 
