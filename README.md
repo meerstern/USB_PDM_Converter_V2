@@ -1,5 +1,6 @@
 # USB-PDM Converter V2  
-  * Converts a digital MEMS microphone into a USB audio device.  
+  * Converts a digital MEMS microphone into a USB audio device.
+  * Resolution 16bit, Sampling Rate 16kHz/24kHz/32kHz/48kHz
   * The sampling rate is defined by `SAMPLES_PER_MS` in `tusb_config.h`.  
   * If you change the sampling rate, be sure to uninstall the driver; otherwise, the device will not function correctly.  
   * In versions such as TinyUSB 0.18.0, the microphone device may fail to initialize properly.
